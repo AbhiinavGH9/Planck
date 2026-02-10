@@ -7,15 +7,18 @@ const BASE_URL = process.env.EXPO_PUBLIC_API_URL
     ? `${process.env.EXPO_PUBLIC_API_URL}/api`
     : (Platform.OS === 'android' ? 'http://10.0.2.2:5000/api' : 'http://localhost:5000/api');
 
-const api = axios.create({
-    baseURL: BASE_URL,
-});
+export const SERVER_URL = process.env.EXPO_PUBLIC_API_URL
+    ? process.env.EXPO_PUBLIC_API_URL
+    : (Platform.OS === 'android' ? 'http://10.0.2.2:5000' : 'http://localhost:5000');
 
 console.log('🌐 API Configuration:');
 console.log('   - BASE_URL:', BASE_URL);
 console.log('   - SERVER_URL:', SERVER_URL);
 console.log('   - Environment:', process.env.NODE_ENV);
 
+const api = axios.create({
+    baseURL: BASE_URL,
+});
 
 api.interceptors.request.use(async (config) => {
     const token = await getToken();
@@ -26,6 +29,3 @@ api.interceptors.request.use(async (config) => {
 });
 
 export default api;
-export const SERVER_URL = process.env.EXPO_PUBLIC_API_URL
-    ? process.env.EXPO_PUBLIC_API_URL
-    : (Platform.OS === 'android' ? 'http://10.0.2.2:5000' : 'http://localhost:5000');
