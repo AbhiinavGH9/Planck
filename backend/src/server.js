@@ -18,7 +18,13 @@ const io = socketIo(server, {
 });
 
 // Middleware
-app.use(cors());
+// Middleware
+app.use(cors({
+    origin: '*', // Allow all origins for mobile/web compatibility
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    credentials: true // Enable if you ever switch to cookies (preparedness)
+}));
 app.use(express.json());
 
 // Socket instance to req

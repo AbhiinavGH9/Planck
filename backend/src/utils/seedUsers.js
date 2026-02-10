@@ -17,8 +17,8 @@ const seedUsers = async () => {
 
     try {
         console.log("🌱 Seeding Users...");
+        console.log("🌱 Seeding Users...");
         const usersRef = db.collection('users');
-        const snapshot = await usersRef.get();
 
         for (const user of users) {
             const hashedPassword = await bcrypt.hash(user.password, 10);

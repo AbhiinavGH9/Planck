@@ -11,6 +11,12 @@ const api = axios.create({
     baseURL: BASE_URL,
 });
 
+console.log('🌐 API Configuration:');
+console.log('   - BASE_URL:', BASE_URL);
+console.log('   - SERVER_URL:', SERVER_URL);
+console.log('   - Environment:', process.env.NODE_ENV);
+
+
 api.interceptors.request.use(async (config) => {
     const token = await getToken();
     if (token) {
