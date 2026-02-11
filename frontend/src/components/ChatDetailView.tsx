@@ -873,6 +873,8 @@ export default function ChatDetailView({ chatId, otherUser, onBack, isMobile = t
                         onScrollBeginDrag={() => setActiveMenu(null)} // Close menu on scroll
                         removeClippedSubviews={false}
                         onScrollToIndexFailed={() => { }} // Silent fail
+                        keyboardShouldPersistTaps="handled"
+                        overScrollMode="always"
                     />
                 )}
                 {/* Scroll Button */}
